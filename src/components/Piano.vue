@@ -38,34 +38,49 @@ import { gsap } from "gsap";
 export default class Piano extends Vue {
   mounted() {
     this.methods.startAnimations();
+    this.methods.mountPiano();
   }
   methods = {
     startAnimations: function() {
       gsap.fromTo("#keyboard", { y: "+=300" }, { y: "-=300", duration: 1 });
     },
 
-    playNote: function(key: any) {
-        console.log(key);
-      const noteAudio: HTMLAudioElement = document.getElementById(key.dataset.note);
-      noteAudio.currentTime = 0;
-      noteAudio.play();
-      key.classList.add("active");
-      noteAudio.addEventListener("ended", () => {
-        key.classList.remove("active");
-      });
+    playNote: function(key: HTMLDivElement) {
+      if (key.dataset.note) {
+        const noteAudio: HTMLAudioElement | null = document.querySelector(
+          `#${key.dataset.note}`
+        );
+        if (noteAudio instanceof HTMLAudioElement) {
+          noteAudio.currentTime = 0;
+          noteAudio.play();
+          key.classList.add("active");
+          noteAudio.addEventListener("ended", () => {
+            key.classList.remove("active");
+          });
+        }
+      }
     },
 
     mountPiano: function() {
       const WHITE_KEYS = ["z", "x", "c", "v", "b", "n", "m"];
       const BLACK_KEYS = ["s", "d", "g", "h", "j"];
 
-      const keys = document.querySelectorAll(".key");
-      const whiteKeys = document.querySelectorAll(".key.white");
-      const blackKeys = document.querySelectorAll(".key.black");
+      const keys: NodeListOf<HTMLDivElement> = document.querySelectorAll(".key");
+      const whiteKeys: NodeListOf<HTMLDivElement> = document.querySelectorAll(".key.white");
+      const blackKeys: NodeListOf<HTMLDivElement> = document.querySelectorAll(".key.black");
+      const audios: NodeListOf<HTMLAudioElement> = document.querySelectorAll("audio");
+
+        const AudioC = new Audio();
+
+      audios.forEach( key => {
+          key.src=`${require(`../notes/${key.id}.mp3`)}`
+      })
 
       keys.forEach(key => {
         key.addEventListener("click", () => this.playNote(key));
       });
+
+      keys[0].addEventListener("click", () => { AudioC.play()})
 
       document.addEventListener("keydown", e => {
         if (e.repeat) return;
