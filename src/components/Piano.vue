@@ -15,18 +15,18 @@
       <div data-note="B" class="key white"></div>
     </div>
 
-    <audio id="C" src="notes/C.mp3"></audio>
-    <audio id="Db" src="notes/Db.mp3"></audio>
-    <audio id="D" src="notes/D.mp3"></audio>
-    <audio id="Eb" src="notes/Eb.mp3"></audio>
-    <audio id="E" src="notes/E.mp3"></audio>
-    <audio id="F" src="notes/F.mp3"></audio>
-    <audio id="Gb" src="notes/Gb.mp3"></audio>
-    <audio id="G" src="notes/G.mp3"></audio>
-    <audio id="Ab" src="notes/Ab.mp3"></audio>
-    <audio id="A" src="notes/A.mp3"></audio>
-    <audio id="Bb" src="notes/Bb.mp3"></audio>
-    <audio id="B" src="notes/B.mp3"></audio>
+    <audio id="C"></audio>
+    <audio id="Db"></audio>
+    <audio id="D"></audio>
+    <audio id="Eb"></audio>
+    <audio id="E"></audio>
+    <audio id="F"></audio>
+    <audio id="Gb"></audio>
+    <audio id="G"></audio>
+    <audio id="Ab"></audio>
+    <audio id="A"></audio>
+    <audio id="Bb"></audio>
+    <audio id="B"></audio>
   </div>
 </template>
 
@@ -65,22 +65,26 @@ export default class Piano extends Vue {
       const WHITE_KEYS = ["z", "x", "c", "v", "b", "n", "m"];
       const BLACK_KEYS = ["s", "d", "g", "h", "j"];
 
-      const keys: NodeListOf<HTMLDivElement> = document.querySelectorAll(".key");
-      const whiteKeys: NodeListOf<HTMLDivElement> = document.querySelectorAll(".key.white");
-      const blackKeys: NodeListOf<HTMLDivElement> = document.querySelectorAll(".key.black");
-      const audios: NodeListOf<HTMLAudioElement> = document.querySelectorAll("audio");
+      const keys: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+        ".key"
+      );
+      const whiteKeys: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+        ".key.white"
+      );
+      const blackKeys: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+        ".key.black"
+      );
+      const audios: NodeListOf<HTMLAudioElement> = document.querySelectorAll(
+        "audio"
+      );
 
-        const AudioC = new Audio();
-
-      audios.forEach( key => {
-          key.src=`${require(`../notes/${key.id}.mp3`)}`
-      })
+      audios.forEach(key => {
+        key.src = `${require(`../notes/${key.id}.mp3`)}`;
+      });
 
       keys.forEach(key => {
         key.addEventListener("click", () => this.playNote(key));
       });
-
-      keys[0].addEventListener("click", () => { AudioC.play()})
 
       document.addEventListener("keydown", e => {
         if (e.repeat) return;
