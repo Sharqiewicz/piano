@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="keyboard">
+    <div class="keyboard" id="keyboard">
       <div data-note="C" class="key white"></div>
       <div data-note="Db" class="key black"></div>
       <div data-note="D" class="key white"></div>
@@ -77,25 +77,39 @@ export default class Piano extends Vue {
         if (blackKeyIndex > -1) this.playNote(blackKeys[blackKeyIndex]);
       });
     }
-
   };
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+.keyboard {
+  display: flex;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.key {
+  height: 200px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.white {
+  width: 100px;
+  background-color: white;
+  border: 1px solid #333;
 }
-a {
-  color: #42b983;
+
+.white.active {
+  background-color: #ccc;
+}
+
+.black {
+  width: 60px;
+  background-color: black;
+  margin-left: -30px;
+  margin-right: -30px;
+  z-index: 2;
+}
+
+.black.active {
+  background-color: #333;
 }
 </style>
