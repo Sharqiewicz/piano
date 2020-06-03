@@ -135,4 +135,14 @@ export default class Piano extends Vue {
 .black.active {
   background-color: #333;
 }
+
+@media(max-width: 600px){
+    .key{
+        height: 200px;
+        width: 100px;
+    }
+    .black{
+        height: 50px;
+    }
+}
 </style>
