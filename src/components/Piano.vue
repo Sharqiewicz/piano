@@ -42,7 +42,8 @@ export default class Piano extends Vue {
   }
   methods = {
     startAnimations: function() {
-      gsap.fromTo("#keyboard", { y: "+=300" }, { y: "-=300", duration: 1 });
+      gsap.set("#keyboard", {autoAlpha: 0})
+      gsap.fromTo("#keyboard", { y: "+=300" }, { y: "-=300", duration: 1, delay: 1, autoAlpha: 1 });
     },
 
     playNote: function(key: HTMLDivElement) {
@@ -104,10 +105,12 @@ export default class Piano extends Vue {
 <style scoped lang="scss">
 .keyboard {
   display: flex;
+  justify-content: center;
+  margin: 50px;
 }
 
 .key {
-  height: 200px;
+  height: 300px;
 }
 
 .white {
@@ -122,6 +125,7 @@ export default class Piano extends Vue {
 
 .black {
   width: 60px;
+  height: 200px;
   background-color: black;
   margin-left: -30px;
   margin-right: -30px;
