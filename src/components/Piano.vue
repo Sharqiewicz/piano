@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { gsap } from "gsap";
 
 @Component
@@ -42,7 +42,7 @@ export default class Piano extends Vue {
   }
   methods = {
     startAnimations: function() {
-      gsap.set("#keyboard", {autoAlpha: 0})
+      gsap.set("#keyboard", {autoAlpha: 0 })
       gsap.fromTo("#keyboard", { y: "+=300" }, { y: "-=300", duration: 1, delay: 1, autoAlpha: 1 });
     },
 
