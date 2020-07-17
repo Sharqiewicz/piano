@@ -1,12 +1,16 @@
 # piano
 
-## Link to the project below:
-xxxxxxxxxxxx
+![screen of the piano project](https://github.com/Sharqiewicz/piano/blob/master/pianoscreen.png?raw=true)
+
+
+## Link to the project is below:
+https://sharqi-piano.netlify.app/
 
 ## Technologies
 - Vue
 - Typescript
 - Javascript
+- GSAP
 
 
 ## Project setup
